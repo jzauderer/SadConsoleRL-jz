@@ -11,24 +11,17 @@ namespace SadConsoleRL
         public const int Width = 80;
         public const int Height = 25;
         private static SadConsole.Entities.Entity player;
+        private static RoomGen roomGen = new RoomGen(10, 20, Width, Height);
 
         static void Main(string[] args)
         {
-            // Setup the engine and creat the main window.
             SadConsole.Game.Create(Width, Height);
-
-            // Hook the start event so we can add consoles to the system.
+            
             SadConsole.Game.OnInitialize = Init;
-
-            // Hook the update event that happens each frame so we can trap keys and respond.
+            
             SadConsole.Game.OnUpdate = Update;
-
-            // Start the game.
+            
             SadConsole.Game.Instance.Run();
-
-            //
-            // Code here will not run until the game window closes.
-            //
 
             SadConsole.Game.Instance.Dispose();
         }
@@ -56,13 +49,14 @@ namespace SadConsoleRL
 
         private static void Init()
         {
-            // Any custom loading and prep. We will use a sample console for now
+            //Create walls and floors
+            roomGen.init();
 
-            Console startingConsole = new Console(Width, Height);
+            Console startingConsole = new ScrollingConsole(Width, Height, Global.FontDefault, new Rectangle(0, 0, roomGen._roomWidth, roomGen._roomHeight), RoomGen._tiles);
             
-
             // Set our new console as the thing to render and process
             SadConsole.Global.CurrentScreen = startingConsole;
+            
 
             CreatePlayer();
             startingConsole.Children.Add(player);
