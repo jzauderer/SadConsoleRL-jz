@@ -10,17 +10,15 @@ namespace SadConsoleRL
     class RoomGen
     {
         public static TileBase[] _tiles; //an array of TileBase that contains all the tiles for a map
-        public int _roomWidth;
-        public int _roomHeight;
-        public int _floorWidth;
-        public int _floorHeight;
+        public int Width;
+        public int Height;
+        private const int _roomWidth = 10;
+        private const int _roomHeight = 20;
 
-        public RoomGen(int width, int height, int floorWidth, int floorHeight)
+        public RoomGen(int width, int height)
         {
-            _roomWidth = width;
-            _roomHeight = height;
-            _floorWidth = floorWidth;
-            _floorHeight = floorHeight;
+            Width = width;
+            Height = height;
         }
 
         public void init()
@@ -38,7 +36,7 @@ namespace SadConsoleRL
                 {
                     //Calculates the appropriate index in the array
                     //based on the y of tile, width of map, and x of tile
-                    _tiles[y * _roomWidth + x] = new TileFloor();
+                    _tiles[y * Width + x] = new TileFloor();
                 }
             }
         }
@@ -47,7 +45,7 @@ namespace SadConsoleRL
         private void CreateWalls()
         {
             //Create an empty array of tiles that is equal to the map size
-            _tiles = new TileBase[_floorWidth * _floorHeight];
+            _tiles = new TileBase[Width * Height];
 
             //Fill the entire tile array with walls
             for(int i = 0; i < _tiles.Length; i++)

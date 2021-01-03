@@ -43,6 +43,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Actor.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="RoomGen.cs" />
     <Compile Include="TileBase.cs" />
     <Compile Include="Game1.cs" />
