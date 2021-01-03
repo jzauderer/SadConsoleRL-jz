@@ -26,8 +26,13 @@ namespace SadConsoleRL
         //returns true if actor was able to move, false if failed to move
         public bool MoveBy(Point positionChange)
         {
-            Position += positionChange;
-            return true;
+            //Check if this position is valid
+            if(GameLoop.Map.IsTileWalkable(Position + positionChange))
+            {
+                Position += positionChange;
+                return true;
+            }
+            return false;
         }
 
         //Moves the Actor TO newPosition location

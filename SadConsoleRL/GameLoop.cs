@@ -11,7 +11,7 @@ namespace SadConsoleRL
         public const int Width = 80;
         public const int Height = 25;
         private static Player player;
-        private static RoomGen roomGen = new RoomGen(Width, Height);
+        private static Map Map = new Map(Width, Height);
 
         static void Main(string[] args)
         {
@@ -33,10 +33,7 @@ namespace SadConsoleRL
 
         private static void Init()
         {
-            //Create walls and floors
-            roomGen.init();
-
-            Console startingConsole = new ScrollingConsole(Width, Height, Global.FontDefault, new Rectangle(0, 0, roomGen.Width, roomGen.Height), RoomGen._tiles);
+            Console startingConsole = new ScrollingConsole(Width, Height, Global.FontDefault, new Rectangle(0, 0, Map.Width, Map.Height), Map.Tiles);
             
             // Set our new console as the thing to render and process
             SadConsole.Global.CurrentScreen = startingConsole;
@@ -51,7 +48,7 @@ namespace SadConsoleRL
         private static void CreatePlayer()
         {
             player = new Player(Color.Yellow, Color.Transparent);
-            player.Position = new Point(20, 10);
+            player.Position = new Point(5, 5);
         }
 
         //Scans the SadConsole's Global KeyboardState and triggers behaviour

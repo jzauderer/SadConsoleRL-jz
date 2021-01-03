@@ -13,11 +13,11 @@ namespace SadConsoleRL
     public abstract class TileBase : Cell
     {
         //Movement and Line of Sight Flags
-        protected bool IsBlockingMove;
-        protected bool IsBlockingLOS;
+        public bool IsBlockingMove;
+        public bool IsBlockingLOS;
 
         //Tile's name
-        protected string Name;
+        public string Name;
 
         //Default Constructor
         public TileBase(Color foreground, Color background, int glyph, bool blockingMove = false, bool blockingLOS = false, String name = "") : base(foreground, background, glyph)
