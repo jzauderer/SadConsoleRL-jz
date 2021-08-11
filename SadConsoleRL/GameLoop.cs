@@ -19,6 +19,8 @@ namespace SadConsoleRL
         private static int _minRoomSize = 4;
         private static int _maxRoomSize = 15;
 
+
+
         static void Main(string[] args)
         {
             SadConsole.Game.Create(Width, Height);
@@ -39,6 +41,10 @@ namespace SadConsoleRL
 
         private static void Init()
         {
+            var fontMaster = SadConsole.Global.LoadFont("fonts/mdcurses16.font");
+            var normalSizedFont = fontMaster.GetFont(SadConsole.Font.FontSizes.One);
+            SadConsole.Global.FontDefault = normalSizedFont; 
+
             //Initialize empty map
             GameMap = new Map(_mapWidth, _mapHeight);
 
