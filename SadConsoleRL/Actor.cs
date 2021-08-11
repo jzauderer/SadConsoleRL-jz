@@ -27,7 +27,7 @@ namespace SadConsoleRL
         public bool MoveBy(Point positionChange)
         {
             //Check if this position is valid
-            if(GameLoop.Map.IsTileWalkable(Position + positionChange))
+            if(GameLoop.GameMap.IsTileWalkable(Position + positionChange))
             {
                 Position += positionChange;
                 return true;

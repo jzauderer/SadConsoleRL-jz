@@ -11,7 +11,13 @@ namespace SadConsoleRL
         public const int Width = 80;
         public const int Height = 25;
         private static Player player;
-        private static Map Map = new Map(Width, Height);
+
+        public static Map GameMap;
+        private static int _mapWidth = 100;
+        private static int _mapHeight = 100;
+        private static int _maxRooms = 500;
+        private static int _minRoomSize = 4;
+        private static int _maxRoomSize = 15;
 
         static void Main(string[] args)
         {
@@ -33,7 +39,15 @@ namespace SadConsoleRL
 
         private static void Init()
         {
-            Console startingConsole = new ScrollingConsole(Width, Height, Global.FontDefault, new Rectangle(0, 0, Map.Width, Map.Height), Map.Tiles);
+            //Initialize empty map
+            GameMap = new Map(_mapWidth, _mapHeight);
+
+            //Instantiate a new map generator
+            //and populate the map with rooms and tunnels
+            MapGenerator mapGen = new MapGenerator();
+            GameMap = mapGen.GenerateMap(_mapWidth, _mapHeight, _maxRooms, _minRoomSize, _maxRoomSize);
+
+            Console startingConsole = new ScrollingConsole(GameMap.Width, GameMap.Height, Global.FontDefault, new Rectangle(0, 0, Width, Height), GameMap.Tiles);
             
             // Set our new console as the thing to render and process
             SadConsole.Global.CurrentScreen = startingConsole;
